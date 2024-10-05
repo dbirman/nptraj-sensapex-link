@@ -27,6 +27,7 @@ from vbl_aquarium.models.unity import Vector4
 from ephys_link.__about__ import __version__
 from ephys_link.bindings.fake_bindings import FakeBindings
 from ephys_link.bindings.mpm_bindings import MPMBinding
+from ephys_link.bindings.ump_3_bindings import Ump3Bindings
 from ephys_link.bindings.ump_4_bindings import Ump4Bindings
 from ephys_link.util.base_bindings import BaseBindings
 from ephys_link.util.common import vector4_to_array
@@ -69,6 +70,8 @@ class PlatformHandler:
         match options.type:
             case "ump-4":
                 return Ump4Bindings()
+            case "ump-3":
+                return Ump3Bindings()
             case "pathfinder-mpm":
                 return MPMBinding(options.mpm_port)
             case "fake":

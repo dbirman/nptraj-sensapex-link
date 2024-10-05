@@ -78,7 +78,7 @@ class Ump3Bindings(BaseBindings):
 
         # Request movement.
         movement = self._get_device(manipulator_id).goto_pos(
-            vector4_to_array(target_position_um), scalar_mm_to_um(speed)
+            vector4_to_array(target_position_um)[:3], scalar_mm_to_um(speed)
         )
 
         # Wait for movement to complete.
@@ -100,7 +100,7 @@ class Ump3Bindings(BaseBindings):
         final_platform_position = await self.set_position(manipulator_id, new_platform_position, speed)
 
         # Return the final depth.
-        return float(final_platform_position.w)
+        return float(final_platform_position.x)
 
     async def stop(self, manipulator_id: str) -> None:
         self._get_device(manipulator_id).stop()
